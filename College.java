@@ -63,7 +63,7 @@ public class College {
         System.out.println(this.name + ": " + this.socialLifeDescription);
         System.out.println(otherCollege.getName() + ": " + otherCollege.getSocialLifeDescription());
     }
-
+    
     public static void main(String[] args) {
         //Ex:
         College harvard = new College("Harvard University", 21000, 1520, 4.18, "Vibrant social life with many activities");
@@ -76,4 +76,5 @@ public class College {
 
         harvard.compare(yale);
     }
+    
 }
