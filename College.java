@@ -45,24 +45,24 @@ public class College {
     }
 
     // Compare w/ another college
-    public void compare(College otherCollege) {
-        System.out.println("Comparison between " + this.name + " and " + otherCollege.getName() + ":");
-        System.out.println("Number of Students:");
-        System.out.println(this.name + ": " + this.numberOfStudents);
-        System.out.println(otherCollege.getName() + ": " + otherCollege.getNumberOfStudents());
-
-        System.out.println("Average SAT:");
-        System.out.println(this.name + ": " + this.averageSAT);
-        System.out.println(otherCollege.getName() + ": " + otherCollege.getAverageSAT());
-
-        System.out.println("Average GPA:");
-        System.out.println(this.name + ": " + this.averageGPA);
-        System.out.println(otherCollege.getName() + ": " + otherCollege.getAverageGPA());
-
-        System.out.println("Social Life Description:");
-        System.out.println(this.name + ": " + this.socialLifeDescription);
-        System.out.println(otherCollege.getName() + ": " + otherCollege.getSocialLifeDescription());
+    public String compare(College otherCollege) {
+        StringBuilder comparison = new StringBuilder();
+        comparison.append("Comparison between ").append(this.name).append(" and ").append(otherCollege.getName()).append(":\n\n");
+        comparison.append("Number of Students:\n");
+        comparison.append(this.name).append(": ").append(this.numberOfStudents).append("\n");
+        comparison.append(otherCollege.getName()).append(": ").append(otherCollege.getNumberOfStudents()).append("\n\n");
+        comparison.append("Average SAT:\n");
+        comparison.append(this.name).append(": ").append(this.averageSAT).append("\n");
+        comparison.append(otherCollege.getName()).append(": ").append(otherCollege.getAverageSAT()).append("\n\n");
+        comparison.append("Average GPA:\n");
+        comparison.append(this.name).append(": ").append(this.averageGPA).append("\n");
+        comparison.append(otherCollege.getName()).append(": ").append(otherCollege.getAverageGPA()).append("\n\n");
+        comparison.append("Social Life Description:\n");
+        comparison.append(this.name).append(": ").append(this.socialLifeDescription).append("\n");
+        comparison.append(otherCollege.getName()).append(": ").append(otherCollege.getSocialLifeDescription()).append("\n");
+        return comparison.toString();
     }
+    
     
     public static void main(String[] args) {
         //Ex:
