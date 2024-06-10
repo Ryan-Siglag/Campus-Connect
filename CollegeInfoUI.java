@@ -17,7 +17,7 @@ public class CollegeInfoUI {
 
     public static void main(String[] args) {
         // Create the frame for the application
-        JFrame frame = new JFrame("College Information");
+        JFrame frame = new JFrame("Campus Connect");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
 
@@ -29,15 +29,15 @@ public class CollegeInfoUI {
 
         // Create the undergraduate colleges tab
         JPanel undergradPanel = createCollegePanel(colleges);
-        tabbedPane.addTab("Undergraduate Colleges", undergradPanel);
+        tabbedPane.addTab("School Data", undergradPanel);
 
         // Create the "Compare" tab
         JPanel comparePanel = createComparePanel(colleges);
-        tabbedPane.addTab("Compare", comparePanel);
+        tabbedPane.addTab("Compare Tool", comparePanel);
 
         // Create the "Find Best Fit" tab
         JPanel findBestFitPanel = createFindBestFitPanel(colleges);
-        tabbedPane.addTab("Find Best Fit", findBestFitPanel);
+        tabbedPane.addTab("Student Fit Tool", findBestFitPanel);
 
         // Add the tabbed pane to the frame
         frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
