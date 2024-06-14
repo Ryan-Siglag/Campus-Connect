@@ -1,9 +1,11 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class CollegeInfoUI {
         JTabbedPane tabbedPane = new JTabbedPane();
 
         // Read colleges from CSV file
-        ArrayList<College> colleges = readCollegesFromCSV("colleges.csv");
+        ArrayList<College> colleges = readCollegesFromCSV();
 
         // Create the undergraduate colleges tab
         JPanel undergradPanel = createCollegePanel(colleges);
@@ -205,25 +207,32 @@ public class CollegeInfoUI {
         return bestFit;
     }
 
-    private static ArrayList<College> readCollegesFromCSV(String fileName) {
+    private static ArrayList<College> readCollegesFromCSV() {
         ArrayList<College> colleges = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            br.readLine(); // Skip the header line
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                if (values.length == 5) {
-                    String name = values[0];
-                    int numberOfStudents = Integer.parseInt(values[1]);
-                    int averageSAT = Integer.parseInt(values[2]);
-                    double averageGPA = Double.parseDouble(values[3]);
-                    String socialLifeDescription = values[4];
-                    College college = new College(name, numberOfStudents, averageSAT, averageGPA, socialLifeDescription);
-                    colleges.add(college);
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileNameExtensionFilter("CSV files", "csv"));
+
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            try (BufferedReader br = new BufferedReader(new FileReader(selectedFile))) {
+                String line;
+                br.readLine(); // Skip the header line
+                while ((line = br.readLine()) != null) {
+                    String[] values = line.split(",");
+                    if (values.length == 5) {
+                        String name = values[0];
+                        int numberOfStudents = Integer.parseInt(values[1]);
+                        int averageSAT = Integer.parseInt(values[2]);
+                        double averageGPA = Double.parseDouble(values[3]);
+                        String socialLifeDescription = values[4];
+                        College college = new College(name, numberOfStudents, averageSAT, averageGPA, socialLifeDescription);
+                        colleges.add(college);
+                    }
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return colleges;
     }
