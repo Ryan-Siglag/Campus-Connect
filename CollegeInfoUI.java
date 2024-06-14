@@ -210,7 +210,7 @@ public class CollegeInfoUI {
     private static ArrayList<College> readCollegesFromCSV() {
         ArrayList<College> colleges = new ArrayList<>();
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileFilter(new FileNameExtensionFilter("CSV files", "csv"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("College CSV file (colleges.csv)", "csv"));
 
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
